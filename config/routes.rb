@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :welcome, only: [:index]
+  resources :players, only: [:index, :show]
   namespace :api do
   namespace :v1 do
     namespace :sports do

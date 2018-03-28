@@ -1,0 +1,11 @@
+<div class="player">
+  <div class="photo">
+    <%= image_tag(@player.photo) %>
+  </div>
+  <div class="info">
+    <h1><%= @player.firstname %> <%= @player.lastname %></h1>
+    <p>#<%= @player.jersey %> <%= @player.position %></p>
+    <p>Age: <%= @player.age %></p>
+    <p>Team: <%= @player.pro_team %></p>
+  </div>
+</div>
