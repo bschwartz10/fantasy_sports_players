@@ -21,7 +21,7 @@ class PlayerSerializer < ActiveModel::Serializer
   end
 
   def average_position_age_diff
-    return "N/A" if object[:age] == nil
+    return "N/A" if object[:age] == nil || object.average_age_for_position(object[:position]) == nil
     (object[:age] - object.average_age_for_position(object[:position])).round(1)
   end
 
