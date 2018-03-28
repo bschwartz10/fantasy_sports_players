@@ -31,6 +31,6 @@ describe "Players API" do
     expect(player["last_name"]).to eq("Abreu")
     expect(player["position"]).to eq("SP")
     expect(player["age"]).to eq(22)
-    expect(player["average_position_age_diff"]).to eq(26)
+    expect(player["average_position_age_diff"]).to eq(0.0)
   end
 end
