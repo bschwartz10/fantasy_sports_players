@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :players, only: [:index, :show]
+  root to: "players#show", id: '8910'
+
+  resources :players, only: [:show]
   namespace :api do
   namespace :v1 do
     namespace :sports do
