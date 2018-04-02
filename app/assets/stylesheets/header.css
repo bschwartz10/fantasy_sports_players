@@ -58,3 +58,13 @@
   color: #fff;
   text-decoration: none;
 }
+
+
+@media only screen and (max-width: 1039px) {
+  .deposit {
+    display: none;
+  }
+  .inner-header img {
+    display: none;
+  }
+}
