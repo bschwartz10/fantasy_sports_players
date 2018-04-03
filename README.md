@@ -9,7 +9,7 @@
 
 ![Alt text](./app/assets/images/kp.png?raw=true "Entrance")
 
-The root path is set to ```players#show, id: '8910'```
+The root path is set to ```players#show, id: '8916'```
 
 ## Setup
 
@@ -59,4 +59,8 @@ Open your browser to `localhost:3000`
 - **<code>GET</code> /players/:id**
 
 ## Discussion
-I chose to import the data from the CBS api using a rake task. I would like to point out if this was a live project this data would become stale very quickly. One solution that could be implemented would be a Cron Job to update the data every hour/day/week to keep the data fresh.
+There were a few design tradeoffs that I made while creating this application.
+
+The first was deciding whether to store the player information from the CBS API in my database or just to use PORO's. The advantages of not storing the information is the data will always be the most up to date. A disadvantage of this approach is I can't use active record methods unless the information is stored in my database. I chose to store the data in my database so I can quickly compute the average for each position using active record instead of hand writing a method using Ruby which would take much longer. Storing the data in the database does run the risk of having stale data though. One solution that could be implemented would be a Cron Job to update the data every hour/day/week to keep the data fresh.
+
+Another decision that I had to make was whether to keep the position attribute on the player of created another table in the database. Originally I kept the position attribute on the player to minimize the amount of tables I had in my database. I ran into issues using this approach when trying to compute the average age for each position. I was accomplishing this by running an average query every time I sent a player object to the serializer. I thought this was a below-par approach since I only really need to compute the average one time for each position whereas I was doing it every time for each player/position. This is why I decided to create a position table in my database and give it an average_age column. Now every time I fetch the data from the CBS endpoint I compute the average once for each position. I then utilize a has_many/belongs_to relationship to quickly fetch the average_age for the players position.
