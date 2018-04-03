@@ -45,7 +45,7 @@ In your terminal, start a local server: `rails s`
 
 Open your browser to `localhost:3000`
 
-### Record Endpoints
+### API Endpoints
 
 #### Players
 - **<code>GET</code> /api/v1/players/:id**
