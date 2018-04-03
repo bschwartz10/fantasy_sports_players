@@ -9,6 +9,10 @@ class PlayerSerializer < ActiveModel::Serializer
     object.lastname
   end
 
+  def position
+    object.position.name
+  end
+
   def name_brief
     case object.sport
       when 'football'
@@ -45,8 +49,8 @@ class PlayerSerializer < ActiveModel::Serializer
   end
 
   def average_position_age_diff
-    return "N/A" if object.age == nil || object.average_age_for_position(object.position) == nil
-    (object.age - object.average_age_for_position(object.position)).round(1)
+    return "N/A" if object.age == nil || object.position.average_age_for_position == 0
+    (object.age - object.position.average_age_for_position)
   end
 
 end
