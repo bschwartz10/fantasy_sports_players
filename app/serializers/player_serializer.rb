@@ -32,9 +32,9 @@ class PlayerSerializer < ActiveModel::Serializer
     last_name = object.lastname.split(' ')
     if last_name.length == 1
       "#{object.firstname} #{object.lastname[0]}."
-    elsif last_name.length == 2 && last_name[-1] == 'Jr.'
+    elsif last_name.length == 2 && last_name[-1] == 'Jr.' #edge case for name with Jr.
       "#{object.firstname} #{last_name[0][0]}."
-    elsif last_name.length == 2
+    elsif last_name.length == 2 #edge case for players with two last names
       "#{object.firstname} #{last_name[-1][0]}."
     end
   end

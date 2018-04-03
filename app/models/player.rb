@@ -2,6 +2,7 @@ class Player < ApplicationRecord
   serialize :icons
   belongs_to :position
 
+  # Create players with positions
   def self.get_all
     CbsService.get_players.map do |raw_player|
       Position.all.each do |position|
