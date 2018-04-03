@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328175755) do
+ActiveRecord::Schema.define(version: 20180403001344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20180328175755) do
     t.string "firstname"
     t.string "photo"
     t.integer "eligible_for_offense_and_defense"
-    t.string "position"
     t.text "icons"
     t.string "lastname"
     t.integer "age"
@@ -32,6 +31,14 @@ ActiveRecord::Schema.define(version: 20180328175755) do
     t.string "pro_team"
     t.string "bye_week"
     t.string "sport"
+    t.bigint "position_id"
+    t.index ["position_id"], name: "index_players_on_position_id"
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.string "name"
+    t.integer "average_age_for_position"
+  end
+
+  add_foreign_key "players", "positions"
 end
