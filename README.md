@@ -33,7 +33,7 @@ Create, migrate, and import player info into your database:
 ```
 rake db:create
 rake db:migrate
-rake getr_data
+rake get_data
 ```
 
 Run `rspec` in your terminal to ensure all tests are passing.
