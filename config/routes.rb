@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "players#show", id: '8910'
+  root to: "players#show", id: '8916'
 
   resources :players, only: [:show]
   namespace :api do
