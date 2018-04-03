@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe PlayerService do
+describe CbsService do
 
   describe "players" do
     it "gets all players" do
       VCR.use_cassette("services/get_players") do
-        players = PlayerService.get_players
+        players = CbsService.get_players
         player = players[4]
 
-        expect(players.count).to eq(9089)
+        expect(players.count).to eq(9096)
         expect(players).to be_an(Array)
         expect(player).to be_a(Hash)
         expect(player).to have_key(:photo)
@@ -24,6 +24,15 @@ describe PlayerService do
         expect(player).to have_key(:fullname)
         expect(player).to have_key(:throws)
         expect(player).to have_key(:pro_team)
+      end
+    end
+    it "gets all positions" do
+      VCR.use_cassette("services/get_players") do
+        positions = CbsService.get_positions
+        position = positions.first
+        expect(positions).to be_an(Array)
+        expect(position).to be_a(Hash)
+        expect(position).to have_key(:position)
       end
     end
   end
