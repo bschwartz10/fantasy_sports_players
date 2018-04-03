@@ -2,11 +2,14 @@ require 'rails_helper'
 
 describe "Sports Basketball API" do
   it "can return a collection of basketball players" do
+    position_one = Position.create(name: 'SF', average_age_for_position: 24)
+    position_two = Position.create(name: 'SG', average_age_for_position: 27)
+
       raw_player_one = {
         firstname: "Quincy",
         photo: "http://sports.cbsimg.net/images/basketball/nba/players/170x170/1992779.png",
         eligible_for_offense_and_defense: 0,
-        position: "SF",
+        position_id: position_one.id,
         lastname: "Acy",
         age: 27,
         elias_id: "ACY029662",
@@ -21,7 +24,7 @@ describe "Sports Basketball API" do
         firstname: "Andrew",
         photo: "http://sports.cbsimg.net/images/basketball/nba/players/170x170/2135571.png",
         eligible_for_offense_and_defense: 0,
-        position: "SG",
+        position_id: position_two.id,
         lastname: "Wiggins",
         age: 23,
         elias_id: "WIG405166",
@@ -38,7 +41,6 @@ describe "Sports Basketball API" do
     get "/api/v1/sports/basketball"
 
     players = JSON.parse(response.body)
-
     expect(response).to be_success
     expect(players).to be_a(Array)
     expect(players.count).to eq(2)
